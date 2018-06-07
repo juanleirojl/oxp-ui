@@ -1,0 +1,24 @@
+<div *ngIf="messageService.messagesSuccess.length>0">
+  <div class="col-md-12">
+      <div class="alert  alert-success  alert-dismissible" role="alert" >
+        <button type="button" class="close" (click)="messageService.clearSuccess()" data-dismiss="alert" >
+          <span aria-hidden="true">&times;</span>
+        </button>
+        <div *ngFor="let msg of messageService.messagesSuccess">
+          <span >{{msg}}</span>
+        </div>
+      </div>
+    </div>
+</div>
+<div *ngIf="messageService.messagesErrors.length>0">
+  <div class="col-md-12"> 
+    <div class="alert alert-danger alert-dismissible" role="alert" >
+      <button type="button" class="close" (click)="messageService.clearErrors()" data-dismiss="alert" >
+        <span aria-hidden="true">&times;</span>
+      </button>
+      <div *ngFor="let msg of messageService.messagesErrors">
+        <span >{{msg}}</span>
+      </div>
+    </div>
+  </div>
+</div>

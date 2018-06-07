@@ -1,0 +1,159 @@
+<section >
+  <main class="users">
+    <section class="heading">
+      <header>
+        <div class="container-fluid">
+          <div class="row">
+            <div class="col-sm-6 text-left">
+              <h1>
+                <i class="fa fa-users" aria-hidden="true"></i> Usuários
+              </h1>
+            </div>
+            <div class="col-sm-6">
+              <nav aria-label="breadcrumb" class="text-right">
+                <ol class="breadcrumb">
+                  <li class="breadcrumb-item">
+                    <i class="fa fa-dashboard"></i>
+                    <a href=""> Home</a>
+                  </li>
+                  <li class="breadcrumb-item active" aria-current="page"> Usuarios</li>
+                </ol>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </header>
+    </section>
+			
+    <section class="main-content grey-back">
+				<div class="container">
+					<app-messages></app-messages>
+					<div class="row">
+						<div class="col-md-12" >
+							<h2 class="subtitle"><i class="fa fa-list-alt" aria-hidden="true"></i> Lista de usuários
+                <a routerLink="/usuarios/novo" class="btn btn-primary float-right"><i class="fa fa-user-plus" aria-hidden="true"></i> Criar novo usuário</a>
+							</h2>
+							<div class="row">
+								<div class="col-md-4 col-sm-6 col-xs-12">
+									<div class="info-box">
+										<span class="info-box-icon bg-green"><i class="fa fa-users"></i></span>
+										<div class="info-box-content">
+											<span class="info-box-text">Total de Usuários</span>
+											<span class="info-box-number" >{{totalUsuarios}} </span>
+										</div>
+									</div>
+								</div>
+								<div class="col-md-4 col-sm-6 col-xs-12">
+									<div class="info-box">
+										<span class="info-box-icon bg-green"><i class="fa fa-flag-o"></i></span>
+										<div class="info-box-content">
+											<span class="info-box-text">Usuários Ativos</span>
+											<span class="info-box-number" >{{totalUsuariosAtivos}}</span>
+										</div>
+									</div>
+								</div>
+								<div class="col-md-4 col-sm-6 col-xs-12">
+									<div class="info-box">
+										<span class="info-box-icon bg-green"><i class="fa fa-user-times"></i></span>
+										<div class="info-box-content">
+											<span class="info-box-text">Usuários Inativos</span>
+											<span class="info-box-number">{{totalUsuariosInativos}}</span>
+										</div>
+									</div>
+								</div>
+							</div>
+
+							<div class="filter">
+								<div class="" data-toggle="collapse" data-target="#filterBody">
+									<h4 class="box-title">Filtros (clique para expandir)</h4>
+								</div>
+								<div id="filterBody" class="collapse">
+									<div class="row">
+										<div class="col-md-6">
+											<div class="form-group">
+												<label for="" class="control-label">Nome</label>
+												<input type="text" class="form-control table-filter" placeholder="" data-filter-column="0">
+											</div>
+										</div>
+										<div class="col-md-6">
+											<div class="form-group">
+												<label for="" class="control-label">Login</label>
+												<input type="text" class="form-control table-filter" placeholder="" data-filter-column="1">
+											</div>
+										</div>
+									</div>
+									<div class="row">
+										<div class="col-md-6">
+											<div class="form-group">
+												<label for="" class="control-label table-filter">Perfil</label>
+												<select class="form-control table-filter" data-filter-column="2">
+												<option value="">Todos</option>
+												   <option >Administrador</option>
+												</select>
+											</div>
+										</div>
+										<div class="col-md-6">
+											<div class="form-group">
+												<label>Status</label> 
+												<select class="form-control table-filter" data-filter-column="3" data-filter-case-sensitive="true" data-filter-default-value="A">
+													<option value="">Todos</option>
+													 <option value='A'>Ativo</option>
+													 <option value='I'>Inativo</option>
+												</select>
+											</div>
+										</div>
+									</div>
+									<div class="row">
+									    <div class="col-md-12">
+									        <div class="form-group">
+									            <a href="#" class="btn btn-secondary btn-clean-filter pull-right"><i class="fa fa-remove"></i> Limpar os filtros</a>
+									        </div>
+									    </div>
+									</div>
+								</div>
+              </div>
+              
+
+              <div class="widget">
+                  <table id="usersTable" class="table table-striped table-hover datatable-init no-fa-margin" data-filter="[]" data-currency="[]" data-currency-totals="[]" data-number-totals="[]">
+                    <thead>
+                      <tr>
+                        <th><i class="fa fa-user" aria-hidden="true"></i> Nome</th>
+                        <th><i class="fa fa-key" aria-hidden="true"></i> Login</th>
+                        <th><i class="fa fa-id-card-o" aria-hidden="true"></i> Perfil</th>
+                        <th><i class="fa fa-sign-in" aria-hidden="true"></i> Status</th>
+                        <!-- <th><i class="fa fa-calendar" aria-hidden="true"></i> Data cadastro</th>
+                         -->
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr *ngFor="let usuario of usuarios">
+                        <td >
+                          <a [routerLink]="['/usuarios', usuario.id]">
+                            <span>{{usuario.nome}}</span>
+                          </a>
+                        </td>
+                        <td > 
+                          <span> {{usuario.login}} </span>
+                        </td>
+                        
+                        <td>
+                          <span *ngFor="let grupo of usuario.grupos">
+                            <span class="label label-primary" >{{ grupo.nome}}</span>
+                          </span>
+                        </td>
+                        
+                        <td [ngSwitch]="usuario.status">
+														<span *ngSwitchCase="'A'" class="label  label-success">Ativo</span>
+														<span *ngSwitchCase="'I'" class="label  label-danger">Inativo</span>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+          </div>
+        </div>
+      </section>
+  </main>
+</section>
