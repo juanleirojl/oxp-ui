@@ -105,7 +105,8 @@ export class UsuarioCadastroComponent implements OnInit {
       this.grupos = resultado[0];
       this.usuario = resultado[1];
       this.preencheUsuarioComGrupos(this.usuario);
-    });
+    },
+    error => this.usuarioService.handleError2);
   }
 
 

@@ -9,6 +9,7 @@ import { UsuarioPesquisaComponent } from './usuarios/usuario-pesquisa/usuario-pe
 import { BarraNavegacaoComponent } from './layout/barra-navegacao/barra-navegacao.component';
 import { UsuarioCadastroComponent } from './usuarios/usuario-cadastro/usuario-cadastro.component';
 import { HttpClientModule } from '@angular/common/http';
+import { NotFoundComponent } from './error/not-found/not-found.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { HttpClientModule } from '@angular/common/http';
     MessagesComponent,
     UsuarioPesquisaComponent,
     BarraNavegacaoComponent,
-    UsuarioCadastroComponent
+    UsuarioCadastroComponent,
+    NotFoundComponent
   ],
   imports: [
     BrowserModule,

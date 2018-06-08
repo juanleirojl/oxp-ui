@@ -7,6 +7,7 @@ import { OXP_API } from '../utils/oxp.api';
 import { map, filter, catchError, mergeMap } from 'rxjs/operators';
 import { GrupoService } from './grupo.service';
 import {forkJoin} from 'rxjs';
+import { Router } from '@angular/router';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -22,7 +23,11 @@ export class UsuarioService {
 
   url_usuarios: string;
 
-  constructor(private messageService: MessageService, private http: HttpClient, private grupoService: GrupoService) {
+  constructor(
+    private messageService: MessageService,
+    private http: HttpClient,
+    private grupoService: GrupoService,
+    private route: Router) {
     this.url_usuarios = `${OXP_API}/usuarios`;
   }
 
@@ -73,7 +78,7 @@ export class UsuarioService {
     return listaContatos;
   }
 
-  private handleError2(error: any) {
+  public handleError2(error: any) {
     const errorMessage = (error.message) ? error.message :
     error.status ? `Status: ${error.status} - Msg: ${error.statusText}` : 'Erro no servidor';
     console.log(errorMessage);
@@ -81,10 +86,29 @@ export class UsuarioService {
       window.location.href = '/';
     }
 
+    if (error.status === 404) {
+      window.location.href = '/404';
+    }
+
     return throwError(errorMessage);
 }
 
-private handleError(error: HttpErrorResponse) {
+public exibeErro(error: any) {
+  const errorMessage = (error.message) ? error.message :
+  error.status ? `Status: ${error.status} - Msg: ${error.statusText}` : 'Erro no servidor';
+
+  if (error.status === '404') {
+    this.route.navigate(['/404']);
+  }
+  console.log(errorMessage);
+  if (error.status === 401) {
+    window.location.href = '/';
+  }
+
+  return throwError(errorMessage);
+}
+
+public handleError(error: HttpErrorResponse) {
 if (error.error instanceof ErrorEvent) {
   // A client-side or network error occurred. Handle it accordingly.
   console.error('An error occurred:', error.error.message);
