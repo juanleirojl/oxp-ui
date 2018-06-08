@@ -16,7 +16,7 @@
 									<li class="breadcrumb-item"><i class="fa fa-dashboard"></i><a routerLink="/relatorios"> Home</a></li>
 									<li class="breadcrumb-item"><i class="fa fa-users"></i><a routerLink="/usuarios"> Usuarios</a></li>
 									<li *ngIf="isNovo()" class="breadcrumb-item active"	aria-current="page"> Adicionar Usuário</li>
-									<li *ngIf="!isNovo()" class="breadcrumb-item active" aria-current="page" >Editar Usuário / y{{usuario.nome}}</li>
+									<li *ngIf="!isNovo()" class="breadcrumb-item active" aria-current="page" >Editar Usuário / {{usuario.nome}}</li>
 								</ol>
 							</nav>
 						</div>
@@ -44,13 +44,13 @@
 									</div>
 								</div>
 								<div class="row">
-									<div class="col-md-12" th:classappend="${#fields.hasErrors('login')}? 'has-error'">
+									<div class="col-md-12">
 										<label for="text"><i class="fa fa-key" aria-hidden="true"></i> Login AD <small>Utilizado como login do AD</small></label>
 										<input type="text" name="login"  [(ngModel)]="usuario.login" placeholder="Informe o login" maxlength="50" />
 									</div>
 								</div>
 								<div class="row">
-									<div class="col-md-12" th:classappend="${#fields.hasErrors('status')}? 'has-error'">
+									<div class="col-md-12" >
 										<label><i class="fa fa-sign-in" aria-hidden="true"></i> Status</label>
 											<select  [(ngModel)]="usuario.status" name="status" class="form-control">
 												<option value="" selected>Selecione.:</option>
@@ -62,7 +62,7 @@
 									<!--[attr.selected]="passenger.Title==title.Text ? true : null"-->
 								</div>
 								<div class="row mb-3">
-									<div class="col-md-12" th:classappend="${#fields.hasErrors('grupos')}? 'has-error'">
+									<div class="col-md-12" >
 										<label><i class="fa fa-id-card-o" aria-hidden="true"></i> Perfil</label>
 										
 											<div class="form-check" *ngFor="let grupo of grupos; let i = index "> 
