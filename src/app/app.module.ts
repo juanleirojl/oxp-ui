@@ -12,6 +12,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { NotFoundComponent } from './error/not-found/not-found.component';
 import { IntegradoresPesquisaComponent } from './integradores/integradores-pesquisa/integradores-pesquisa.component';
 import { IntegradoresCadastroComponent } from './integradores/integradores-cadastro/integradores-cadastro.component';
+import { OperadoraPesquisaComponent } from './operadoras/operadora-pesquisa/operadora-pesquisa.component';
+import { OperadoraCadastroComponent } from './operadoras/operadora-cadastro/operadora-cadastro.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +24,9 @@ import { IntegradoresCadastroComponent } from './integradores/integradores-cadas
     UsuarioCadastroComponent,
     NotFoundComponent,
     IntegradoresPesquisaComponent,
-    IntegradoresCadastroComponent
+    IntegradoresCadastroComponent,
+    OperadoraPesquisaComponent,
+    OperadoraCadastroComponent
   ],
   imports: [
     BrowserModule,

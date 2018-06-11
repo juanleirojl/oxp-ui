@@ -5,6 +5,8 @@ import { UsuarioCadastroComponent } from './usuarios/usuario-cadastro/usuario-ca
 import { NotFoundComponent } from './error/not-found/not-found.component';
 import { IntegradoresPesquisaComponent } from './integradores/integradores-pesquisa/integradores-pesquisa.component';
 import { IntegradoresCadastroComponent } from './integradores/integradores-cadastro/integradores-cadastro.component';
+import { OperadoraPesquisaComponent } from './operadoras/operadora-pesquisa/operadora-pesquisa.component';
+import { OperadoraCadastroComponent } from './operadoras/operadora-cadastro/operadora-cadastro.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/usuarios', pathMatch: 'full' },
@@ -15,6 +17,12 @@ const routes: Routes = [
   { path: 'integradores', component: IntegradoresPesquisaComponent },
   { path: 'integradores/novo', component: IntegradoresCadastroComponent },
   { path: 'integradores/:id', component: IntegradoresCadastroComponent },
+
+  { path: 'operadoras', component: OperadoraPesquisaComponent },
+  { path: 'operadoras/novo', component: OperadoraCadastroComponent },
+  { path: 'operadoras/:id', component: OperadoraCadastroComponent },
+
+
   { path: '404', component: NotFoundComponent},
    { path: '**', redirectTo: '/404' }
 ];

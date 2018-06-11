@@ -1,0 +1,76 @@
+<section layout:fragment="conteudo">
+    <main>
+       <section class="heading">
+		<header>
+			<div class="container-fluid">
+				<div class="row">
+					<div class="col-sm-6 text-left">
+						<h1>
+							<i class="fa fa-mobile-phone" aria-hidden="true"></i>Operadoras
+						</h1>
+					</div>
+					<div class="col-sm-6">
+						<nav aria-label="breadcrumb" class="text-right">
+							<ol class="breadcrumb">
+								<li class="breadcrumb-item"><i class="fa fa-dashboard"></i><a routerLink="/relatorios"> Home</a></li>
+								<li class="breadcrumb-item"><i class="fa fa-mobile-phone"></i><a routerLink="/operadoras"> Operadoras</a></li>
+								<li *ngIf="isNovo()" class="breadcrumb-item active"	aria-current="page">Adicionar Operadora</li>
+								<li *ngIf="!isNovo()" class="breadcrumb-item active" aria-current="page" th:text="|Editar Operadora / ${operadoraForm.nome}|"></li>
+							</ol>
+						</nav>
+					</div>
+				</div>
+			</div>
+		</header>
+	</section>
+        <section class="main-content grey-back resumo">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h2 *ngIf="isNovo()" class="subtitle"><i class="fa fa-user-plus" aria-hidden="true"></i> Adicionar operadora</h2>
+                		<h2 *ngIf="!isNovo()" class="subtitle"><i class="fa fa-edit" aria-hidden="true"></i> Editar operadora</h2>
+                        <div class="widget">
+							<form class="form" #form="ngForm" (ngSubmit)="save()">
+								<input type="hidden" class="form-control input-sm" id="id" [(ngModel)]="operadora.id" name="id"/>
+								<app-messages></app-messages>
+								
+								<div class="row">
+									<div class="col-md-1">
+										<input type="hidden" class="form-control input-sm" [(ngModel)]="operadora.id" name="id" readOnly="readonly"/>
+									</div>
+								 </div>
+                                <div class="row">
+                                    <div class="col-md-12" th:classappend="${#fields.hasErrors('nome')}? 'has-error'">
+                                        <label for="nome"><i class="fa fa-mobile-phone" aria-hidden="true"></i> Nome</label>
+										<input type="text" name="nome" autofocus="autofocus" [(ngModel)]="operadora.nome" maxlength="50" placeholder="Preencha o nome..."/>
+                                    </div>
+                                </div>
+                                
+                                 <div class="row">
+                                   <div class="col-md-12" th:classappend="${#fields.hasErrors('cnpj')}? 'has-error'">
+                                       <label for="cnpj"><i class="fa fa-file-text-o" aria-hidden="true"></i> CNPJ</label>
+									   <input type="text" name="cnpj" autofocus="autofocus" [(ngModel)]="operadora.cnpj" maxlength="18" placeholder="Preencha o CNPJ..." value="000.000.000/0001-00"/>
+                                   </div>
+                               	</div>
+								
+                            	<div class="row">
+									<div class="col-md-12" >
+										<label><i class="fa fa-sign-in" aria-hidden="true"></i> Status</label>
+											<select  [(ngModel)]="operadora.status" name="status" class="form-control">
+												<option value="" selected>Selecione.:</option>
+												<option *ngFor="let status of statusOperadora.values()" [ngValue]="status.value">
+													{{status.name}}
+												</option>
+											</select>
+									</div>
+								</div>
+                                <button *ngIf="isNovo()" type="submit" class="btn btn-lg btn-primary btn-block"><i class="fa fa-save" aria-hidden="true"></i> Adicionar Operadora</button>
+                                <button *ngIf="!isNovo()" type="submit" class="btn btn-lg btn-primary btn-block"><i class="fa fa-save" aria-hidden="true"></i> Alterar Operadora</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+</section>
