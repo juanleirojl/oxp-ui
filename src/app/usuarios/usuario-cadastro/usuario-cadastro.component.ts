@@ -8,6 +8,7 @@ import { Grupo } from '../../models/grupo.model';
 import { GrupoService } from '../../services/grupo.service';
 import { ActivatedRoute, Router } from '@angular/router';
 import { forkJoin } from 'rxjs';
+import { ErrorHandlerService } from '../../utils/error-handler.service';
 
 @Component({
   selector: 'app-usuario-cadastro',
@@ -28,7 +29,8 @@ export class UsuarioCadastroComponent implements OnInit {
     private messageService: MessageService,
     private grupoService: GrupoService,
     private router: ActivatedRoute,
-    private route: Router) { }
+    private route: Router,
+    private errorHandler: ErrorHandlerService) { }
 
   ngOnInit() {
     this.usuario = new Usuario();
@@ -59,6 +61,7 @@ export class UsuarioCadastroComponent implements OnInit {
       this.messageService.addSuccess(`Registro ${usuarioRetorno.login} salvo com sucesso`);
       this.route.navigate(['/usuarios']);
     }, err => {
+      this.errorHandler.handle(err);
       this.messageService.addErrors(err);
     }
     );

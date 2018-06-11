@@ -10,6 +10,8 @@ import { BarraNavegacaoComponent } from './layout/barra-navegacao/barra-navegaca
 import { UsuarioCadastroComponent } from './usuarios/usuario-cadastro/usuario-cadastro.component';
 import { HttpClientModule } from '@angular/common/http';
 import { NotFoundComponent } from './error/not-found/not-found.component';
+import { IntegradoresPesquisaComponent } from './integradores/integradores-pesquisa/integradores-pesquisa.component';
+import { IntegradoresCadastroComponent } from './integradores/integradores-cadastro/integradores-cadastro.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +20,9 @@ import { NotFoundComponent } from './error/not-found/not-found.component';
     UsuarioPesquisaComponent,
     BarraNavegacaoComponent,
     UsuarioCadastroComponent,
-    NotFoundComponent
+    NotFoundComponent,
+    IntegradoresPesquisaComponent,
+    IntegradoresCadastroComponent
   ],
   imports: [
     BrowserModule,

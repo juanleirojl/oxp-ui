@@ -8,6 +8,7 @@ import { map, filter, catchError, mergeMap } from 'rxjs/operators';
 import { GrupoService } from './grupo.service';
 import {forkJoin} from 'rxjs';
 import { Router } from '@angular/router';
+import { ErrorHandlerService } from '../utils/error-handler.service';
 
 const httpOptions = {
   headers: new HttpHeaders({
@@ -27,7 +28,8 @@ export class UsuarioService {
     private messageService: MessageService,
     private http: HttpClient,
     private grupoService: GrupoService,
-    private route: Router) {
+    private route: Router,
+    private errorHandler: ErrorHandlerService) {
     this.url_usuarios = `${OXP_API}/usuarios`;
   }
 

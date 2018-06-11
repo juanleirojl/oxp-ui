@@ -1,0 +1,76 @@
+<section>
+    <main>
+    <section class="heading">
+		<header>
+			<div class="container-fluid">
+				<div class="row">
+					<div class="col-sm-6 text-left">
+						<h1>
+							<i class="fa fa-link" aria-hidden="true"></i>Integradores
+						</h1>
+					</div>
+					<div class="col-sm-6">
+						<nav aria-label="breadcrumb" class="text-right">
+							<ol class="breadcrumb">
+								<li class="breadcrumb-item"><i class="fa fa-dashboard"></i><a routerLink="/relatorios"> Home</a></li>
+								<li class="breadcrumb-item"><i class="fa fa-link"></i><a routerLink="/integradores"> Integradores</a></li>
+								<li *ngIf="isNovo()" class="breadcrumb-item active"	aria-current="page">Adicionar Integrador</li>
+								<li *ngIf="!isNovo()" class="breadcrumb-item active" aria-current="page" >Editar Integrador / {{integrador.nome}}</li>
+							</ol>
+						</nav>
+					</div>
+				</div>
+			</div>
+		</header>
+	</section>
+        <section class="main-content grey-back resumo">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h2 *ngIf="isNovo()" class="subtitle"><i class="fa fa-user-plus" aria-hidden="true"></i> Adicionar integrador</h2>
+                		    <h2 *ngIf="!isNovo()" class="subtitle"><i class="fa fa-edit" aria-hidden="true"></i> Editar integrador</h2>
+                        <div class="widget">
+                            <form class="form" #form="ngForm" (ngSubmit)="save()">
+                                <input type="hidden" class="form-control input-sm" id="id" [(ngModel)]="integrador.id" name="id"/>
+                                <app-messages></app-messages>
+
+                              <div class="row">
+                                <div class="col-md-1">
+                                  <input type="hidden" class="form-control input-sm" id="id" name="id" [(ngModel)]="integrador.id" readOnly="readonly" />
+                                </div>
+                              </div>
+                              <div class="row">
+                                <div class="col-md-12" th:classappend="${#fields.hasErrors('nome')}? 'has-error'">
+                                  <label for="nome">
+                                    <i class="fa fa-link" aria-hidden="true"></i> Nome</label>
+                                    <input type="text" name="nome" autofocus="autofocus" [(ngModel)]="integrador.nome" maxlength="50" placeholder="Preencha o nome..."/>
+                                </div>
+                              </div>
+                            
+                              <div class="row">
+                                <div class="col-md-12" th:classappend="${#fields.hasErrors('apelido')}? 'has-error'">
+                                  <label for="apelido">
+                                  <i class="fa fa-user-times" aria-hidden="true"></i> Apelido</label>
+                                  <input type="text" name="apelido" autofocus="autofocus" [(ngModel)]="integrador.apelido" maxlength="50" placeholder="Preencha o apelido..."/>
+                                </div>
+                              </div>
+                            
+                              <div class="row">
+                                <div class="col-md-12" th:classappend="${#fields.hasErrors('cnpj')}? 'has-error'">
+                                  <label for="cnpj">
+                                    <i class="fa fa-file-text-o" aria-hidden="true"></i> CNPJ</label>
+                                  <input type="text" name="cnpj" autofocus="autofocus" [(ngModel)]="integrador.cnpj" maxlength="18" placeholder="Preencha o CNPJ..." value="000.000.000/0001-00"/>
+                                </div>
+                              </div>
+                              <button *ngIf="isNovo()" type="submit" class="btn btn-lg btn-primary btn-block">
+                                <i class="fa fa-save" aria-hidden="true"></i> Adicionar Integrador</button>
+                              <button *ngIf="!isNovo()" type="submit" class="btn btn-lg btn-primary btn-block">
+                                <i class="fa fa-save" aria-hidden="true"></i> Alterar Integrador</button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+</section>
